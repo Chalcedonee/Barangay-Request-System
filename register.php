@@ -143,214 +143,432 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Resident Registration</title>
+    <title>Create Account - Barangay Request System</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
 
 </head>
 
-<body>
+<body class="min-h-screen bg-gray-50 text-gray-900">
 
-    <h1>Resident Registration</h1>
+    <main class="px-6 py-12">
 
-    <?php if ($error): ?>
+        <div class="mx-auto w-full max-w-3xl">
 
-        <p style="color: red;">
-            <?= htmlspecialchars($error) ?>
-        </p>
+            <!-- Header -->
+            <div class="mb-8 text-center">
 
-    <?php endif; ?>
+                <h1 class="text-2xl font-semibold tracking-tight text-gray-900">
+                    Barangay Request System
+                </h1>
 
+                <p class="mt-2 text-sm text-gray-500">
+                    Create an account to access barangay services
+                </p>
 
-    <?php if ($message): ?>
+            </div>
 
-        <p style="color: green;">
-            <?= htmlspecialchars($message) ?>
-        </p>
 
-    <?php endif; ?>
+            <!-- Registration Card -->
+            <div class="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm md:p-10">
 
+                <div class="mb-8">
 
-    <form method="POST">
+                    <h2 class="text-xl font-semibold text-gray-900">
+                        Create your account
+                    </h2>
 
-        <h2>Personal Information</h2>
+                    <p class="mt-1 text-sm text-gray-500">
+                        Please provide your information below.
+                    </p>
 
-        <label>
-            First Name *
-        </label>
+                </div>
 
-        <br>
 
-        <input
-            type="text"
-            name="first_name"
-            required
-        >
+                <!-- Error -->
+                <?php if ($error): ?>
 
-        <br><br>
+                    <div class="mb-6 rounded-lg border border-red-200 bg-red-50 px-4 py-3">
 
+                        <p class="text-sm text-red-700">
+                            <?= htmlspecialchars($error) ?>
+                        </p>
 
-        <label>
-            Middle Name
-        </label>
+                    </div>
 
-        <br>
+                <?php endif; ?>
 
-        <input
-            type="text"
-            name="middle_name"
-        >
 
-        <br><br>
+                <!-- Success -->
+                <?php if ($message): ?>
 
+                    <div class="mb-6 rounded-lg border border-green-200 bg-green-50 px-4 py-3">
 
-        <label>
-            Last Name *
-        </label>
+                        <p class="text-sm text-green-700">
+                            <?= htmlspecialchars($message) ?>
+                        </p>
 
-        <br>
+                    </div>
 
-        <input
-            type="text"
-            name="last_name"
-            required
-        >
+                <?php endif; ?>
 
-        <br><br>
 
+                <form method="POST" class="space-y-8">
 
-        <label>
-            Suffix
-        </label>
+                    <!-- Personal Information -->
+                    <section>
 
-        <br>
+                        <div class="mb-5 border-b border-gray-100 pb-3">
 
-        <input
-            type="text"
-            name="suffix"
-            placeholder="Jr., Sr., III"
-        >
+                            <h3 class="text-base font-semibold text-gray-900">
+                                Personal Information
+                            </h3>
 
-        <br><br>
+                            <p class="mt-1 text-sm text-gray-500">
+                                Enter your basic personal information.
+                            </p>
 
+                        </div>
 
-        <label>
-            Birth Date *
-        </label>
 
-        <br>
+                        <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
 
-        <input
-            type="date"
-            name="birth_date"
-            required
-        >
+                            <!-- First Name -->
+                            <div>
 
-        <br><br>
+                                <label
+                                    for="first_name"
+                                    class="mb-2 block text-sm font-medium text-gray-700"
+                                >
+                                    First Name <span class="text-red-500">*</span>
+                                </label>
 
+                                <input
+                                    type="text"
+                                    id="first_name"
+                                    name="first_name"
+                                    value="<?= htmlspecialchars($_POST["first_name"] ?? "") ?>"
+                                    required
+                                    class="block w-full rounded-lg border border-gray-300 px-4 py-3 text-sm outline-none transition focus:border-gray-900 focus:ring-1 focus:ring-gray-900"
+                                >
+
+                            </div>
+
+
+                            <!-- Middle Name -->
+                            <div>
+
+                                <label
+                                    for="middle_name"
+                                    class="mb-2 block text-sm font-medium text-gray-700"
+                                >
+                                    Middle Name
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="middle_name"
+                                    name="middle_name"
+                                    value="<?= htmlspecialchars($_POST["middle_name"] ?? "") ?>"
+                                    class="block w-full rounded-lg border border-gray-300 px-4 py-3 text-sm outline-none transition focus:border-gray-900 focus:ring-1 focus:ring-gray-900"
+                                >
+
+                            </div>
+
+
+                            <!-- Last Name -->
+                            <div>
+
+                                <label
+                                    for="last_name"
+                                    class="mb-2 block text-sm font-medium text-gray-700"
+                                >
+                                    Last Name <span class="text-red-500">*</span>
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="last_name"
+                                    name="last_name"
+                                    value="<?= htmlspecialchars($_POST["last_name"] ?? "") ?>"
+                                    required
+                                    class="block w-full rounded-lg border border-gray-300 px-4 py-3 text-sm outline-none transition focus:border-gray-900 focus:ring-1 focus:ring-gray-900"
+                                >
+
+                            </div>
+
+
+                            <!-- Suffix -->
+                            <div>
+
+                                <label
+                                    for="suffix"
+                                    class="mb-2 block text-sm font-medium text-gray-700"
+                                >
+                                    Suffix
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="suffix"
+                                    name="suffix"
+                                    value="<?= htmlspecialchars($_POST["suffix"] ?? "") ?>"
+                                    placeholder="Jr., Sr., III"
+                                    class="block w-full rounded-lg border border-gray-300 px-4 py-3 text-sm outline-none transition focus:border-gray-900 focus:ring-1 focus:ring-gray-900"
+                                >
+
+                            </div>
+
+
+                            <!-- Birth Date -->
+                            <div>
+
+                                <label
+                                    for="birth_date"
+                                    class="mb-2 block text-sm font-medium text-gray-700"
+                                >
+                                    Birth Date <span class="text-red-500">*</span>
+                                </label>
+
+                                <input
+                                    type="date"
+                                    id="birth_date"
+                                    name="birth_date"
+                                    value="<?= htmlspecialchars($_POST["birth_date"] ?? "") ?>"
+                                    required
+                                    class="block w-full rounded-lg border border-gray-300 px-4 py-3 text-sm outline-none transition focus:border-gray-900 focus:ring-1 focus:ring-gray-900"
+                                >
+
+                            </div>
+
+
+                            <!-- Sex -->
+                            <div>
 
-        <label>
-            Sex *
-        </label>
+                                <label
+                                    for="sex"
+                                    class="mb-2 block text-sm font-medium text-gray-700"
+                                >
+                                    Sex <span class="text-red-500">*</span>
+                                </label>
 
-        <br>
+                                <select
+                                    id="sex"
+                                    name="sex"
+                                    required
+                                    class="block w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm text-gray-900 outline-none transition focus:border-gray-900 focus:ring-1 focus:ring-gray-900"
+                                >
 
-        <select name="sex" required>
+                                    <option value="">
+                                        Select
+                                    </option>
+
+                                    <option
+                                        value="Male"
+                                        <?= (($_POST["sex"] ?? "") === "Male") ? "selected" : "" ?>
+                                    >
+                                        Male
+                                    </option>
+
+                                    <option
+                                        value="Female"
+                                        <?= (($_POST["sex"] ?? "") === "Female") ? "selected" : "" ?>
+                                    >
+                                        Female
+                                    </option>
 
-            <option value="">Select</option>
+                                </select>
+
+                            </div>
+
 
-            <option value="Male">
-                Male
-            </option>
+                            <!-- Address -->
+                            <div class="md:col-span-2">
+
+                                <label
+                                    for="address"
+                                    class="mb-2 block text-sm font-medium text-gray-700"
+                                >
+                                    Address <span class="text-red-500">*</span>
+                                </label>
+
+                                <textarea
+                                    id="address"
+                                    name="address"
+                                    rows="3"
+                                    required
+                                    class="block w-full resize-none rounded-lg border border-gray-300 px-4 py-3 text-sm outline-none transition focus:border-gray-900 focus:ring-1 focus:ring-gray-900"
+                                ><?= htmlspecialchars($_POST["address"] ?? "") ?></textarea>
+
+                            </div>
 
-            <option value="Female">
-                Female
-            </option>
+
+                            <!-- Contact Number -->
+                            <div class="md:col-span-2">
+
+                                <label
+                                    for="contact_number"
+                                    class="mb-2 block text-sm font-medium text-gray-700"
+                                >
+                                    Contact Number
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="contact_number"
+                                    name="contact_number"
+                                    value="<?= htmlspecialchars($_POST["contact_number"] ?? "") ?>"
+                                    placeholder="09XXXXXXXXX"
+                                    class="block w-full rounded-lg border border-gray-300 px-4 py-3 text-sm outline-none transition focus:border-gray-900 focus:ring-1 focus:ring-gray-900"
+                                >
+
+                            </div>
+
+                        </div>
 
-        </select>
+                    </section>
+
 
-        <br><br>
+                    <!-- Account Information -->
+                    <section>
+
+                        <div class="mb-5 border-b border-gray-100 pb-3">
+
+                            <h3 class="text-base font-semibold text-gray-900">
+                                Account Information
+                            </h3>
 
+                            <p class="mt-1 text-sm text-gray-500">
+                                Create the login details for your account.
+                            </p>
 
-        <label>
-            Address *
-        </label>
+                        </div>
 
-        <br>
 
-        <textarea
-            name="address"
-            rows="3"
-            required
-        ></textarea>
+                        <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
 
-        <br><br>
+                            <!-- Email -->
+                            <div class="md:col-span-2">
 
+                                <label
+                                    for="email"
+                                    class="mb-2 block text-sm font-medium text-gray-700"
+                                >
+                                    Email Address <span class="text-red-500">*</span>
+                                </label>
 
-        <label>
-            Contact Number
-        </label>
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    value="<?= htmlspecialchars($_POST["email"] ?? "") ?>"
+                                    placeholder="you@example.com"
+                                    autocomplete="email"
+                                    required
+                                    class="block w-full rounded-lg border border-gray-300 px-4 py-3 text-sm outline-none transition focus:border-gray-900 focus:ring-1 focus:ring-gray-900"
+                                >
 
-        <br>
+                            </div>
 
-        <input
-            type="text"
-            name="contact_number"
-        >
 
-        <br><br>
+                            <!-- Password -->
+                            <div>
 
+                                <label
+                                    for="password"
+                                    class="mb-2 block text-sm font-medium text-gray-700"
+                                >
+                                    Password <span class="text-red-500">*</span>
+                                </label>
 
-        <h2>Account Information</h2>
+                                <input
+                                    type="password"
+                                    id="password"
+                                    name="password"
+                                    minlength="8"
+                                    autocomplete="new-password"
+                                    required
+                                    class="block w-full rounded-lg border border-gray-300 px-4 py-3 text-sm outline-none transition focus:border-gray-900 focus:ring-1 focus:ring-gray-900"
+                                >
 
-        <label>
-            Email *
-        </label>
+                                <p class="mt-2 text-xs text-gray-400">
+                                    Must be at least 8 characters.
+                                </p>
 
-        <br>
+                            </div>
 
-        <input
-            type="email"
-            name="email"
-            required
-        >
 
-        <br><br>
+                            <!-- Confirm Password -->
+                            <div>
 
+                                <label
+                                    for="confirm_password"
+                                    class="mb-2 block text-sm font-medium text-gray-700"
+                                >
+                                    Confirm Password <span class="text-red-500">*</span>
+                                </label>
 
-        <label>
-            Password *
-        </label>
+                                <input
+                                    type="password"
+                                    id="confirm_password"
+                                    name="confirm_password"
+                                    minlength="8"
+                                    autocomplete="new-password"
+                                    required
+                                    class="block w-full rounded-lg border border-gray-300 px-4 py-3 text-sm outline-none transition focus:border-gray-900 focus:ring-1 focus:ring-gray-900"
+                                >
 
-        <br>
+                            </div>
 
-        <input
-            type="password"
-            name="password"
-            required
-        >
+                        </div>
 
-        <br><br>
+                    </section>
 
 
-        <label>
-            Confirm Password *
-        </label>
+                    <!-- Submit -->
+                    <div class="border-t border-gray-100 pt-6">
 
-        <br>
+                        <button
+                            type="submit"
+                            class="w-full rounded-lg bg-gray-900 px-4 py-3 text-sm font-medium text-white transition hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
+                        >
+                            Create Account
+                        </button>
 
-        <input
-            type="password"
-            name="confirm_password"
-            required
-        >
+                    </div>
 
-        <br><br>
+                </form>
 
 
-        <button type="submit">
-            Create Account
-        </button>
+                <!-- Login Link -->
+                <div class="mt-6 text-center">
 
-    </form>
+                    <p class="text-sm text-gray-500">
+
+                        Already have an account?
+
+                        <a
+                            href="login.php"
+                            class="font-medium text-gray-900 hover:underline"
+                        >
+                            Log in
+                        </a>
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Footer -->
+            <p class="mt-6 text-center text-xs text-gray-400">
+                Barangay Request System
+            </p>
+
+        </div>
+
+    </main>
 
 </body>
 
