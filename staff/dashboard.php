@@ -562,7 +562,7 @@ function getStatusClass($status)
                                     <td class="px-6 py-5">
 
                                         <a
-                                            href="request_details.php?id=<?= $request["request_id"] ?>"
+                                            href="request.php?id=<?= $request["request_id"] ?>"
                                             class="font-medium text-gray-700 hover:text-gray-900"
                                         >
                                             View
